@@ -8,7 +8,7 @@ let bulbasaur = {
   Generation: 1
 };
 
-let ho-oh = {
+let ho_oh = {
   Name: 'Ho-oh',
   Types: ['Fire', 'Flying'],
   Height: 3.8,
