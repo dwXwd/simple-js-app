@@ -24,4 +24,8 @@ let archeops = {
   Evolution: 5
 };
 
-let pokemonlist [bulbasaur, ho_oh, Absol];
+let pokemonlist [bulbasaur, ho_oh, archeops];
+
+for (let i=0; i < pokemonlist.lenght; i++) {
+  document.write ( + pokemonlist[i].name + pokemonlist[i].height + ));
+}
