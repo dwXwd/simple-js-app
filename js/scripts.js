@@ -1,4 +1,4 @@
-let pokemonlist [bulbasaur, ho-oh, Absol];
+
 
 let bulbasaur = {
   Name: 'Bulbasaur',
@@ -23,3 +23,5 @@ let archeops = {
   Evolution: '2 of 2',
   Evolution: 5
 };
+
+let pokemonlist [bulbasaur, ho_oh, Absol];
