@@ -26,6 +26,6 @@ let archeops = {
 
 let pokemonlist [bulbasaur, ho_oh, archeops];
 
-for (let i=0; i < pokemonlist.lenght; i++) {
+for (let i=0; i < pokemonlist.length; i++) {
   document.write ( + pokemonlist[i].name + pokemonlist[i].height + ));
 }
