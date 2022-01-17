@@ -1,30 +1,32 @@
+//created array for distinct Pokemon-Objects.
 
 
-let bulbasaur = {
-  Name: 'Bulbasaur',
-  Types: ['Plant', 'Poison'],
-  Height: 0.7,
-  Evolution: '1 of 3',
-  Generation: 1
-};
+let pokemonList = [
+  {
+  name:'Bulbasaur',
+  types: ['Plant', 'Poison'],
+  height: 0.7,
+  evolution:'1 of 3',
+  generation: 1
+  },
 
-let ho_oh = {
-  Name: 'Ho-oh',
-  Types: ['Fire', 'Flying'],
-  Height: 3.8,
-  Evolution: '1 of 1',
-  Generation: 2
-};
+  {
+  name:'Ho-oh',
+  types: ['Fire', 'Flying'],
+  height: 3.8,
+  evolution:'1 of 1',
+  generation: 2
+  },
 
-let archeops = {
-  Name: 'Archeops',
-  Types: ['Stone', 'Flying'],
-  Height: 1.4,
-  Evolution: '2 of 2',
-  Evolution: 5
-};
+  {
+  name:'Archeops',
+  types: ['Stone', 'Flying'],
+  height: 1.4,
+  evolution:'2 of 2',
+  generation: 5
+  }
+]
 
-let pokemonlist [bulbasaur, ho_oh, archeops];
 
 for (let i=0; i < pokemonlist.length; i++) {
   document.write ( + pokemonlist[i].name + pokemonlist[i].height + ));
