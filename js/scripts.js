@@ -27,7 +27,13 @@ let pokemonList = [
   }
 ]
 
+//display Names and height of objects.
+//Added the note "Wow, that's BIG" to all objects with a height over 2.5
 
-for (let i=0; i < pokemonlist.length; i++) {
-  document.write ( + pokemonlist[i].name + pokemonlist[i].height + ));
+for (let i = 0; i < pokemonList.length; i++) {
+  if (pokemonList[i].height >= 2.5) {
+      document.write('<P>' + pokemonList[i].name + ('<br>height:')+ pokemonList[i].height + (' (Wow, that\'s BIG!)') + '<P>');
+  } else {
+  document.write('<P>' + pokemonList[i].name + ('<br>height:')+ pokemonList[i].height + '<P>');
+  }
 }
