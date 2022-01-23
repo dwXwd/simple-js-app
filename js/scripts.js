@@ -1,5 +1,6 @@
 //created array for distinct Pokemon-Objects.
 
+let pokemonRepository = (function () {
   let pokemonList = [
     {
     name:'Bulbasaur',
@@ -54,8 +55,18 @@
     pokemonList.push(pokemon);
   }
 
+  function getAll(){
+    return pokemonList;
   }
 
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
+
+
+//Creating function for...
 //display Names and height of objects.
 //Added the note "Wow, that's BIG" to all objects with a height over 2.5
 
@@ -67,5 +78,4 @@ function printArrayDetails(list) {
     }
   }
 
-pokemonRepository.getAll.forEach(printArrayDetails); //displays pokemonList
-pokemonList2.forEach(printArrayDetails); // displays pokemonList 2
+pokemonRepository.getAll().forEach(printArrayDetails); //displays pokemonList
