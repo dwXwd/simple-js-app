@@ -42,11 +42,11 @@
     },
 
     {
-    name:'Archeops',
-    types: ['Stone', 'Flying'],
+    name:'Onix',
+    types: ['Stone', 'Ground'],
     height: 1.4,
-    evolution:'2 of 2',
-    generation: 5
+    evolution:'1 of 2',
+    generation: 1
     }
   ];
 
@@ -55,7 +55,6 @@
   }
 
   }
-]
 
 //display Names and height of objects.
 //Added the note "Wow, that's BIG" to all objects with a height over 2.5
