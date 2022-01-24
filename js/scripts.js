@@ -106,4 +106,12 @@ pokemonRepository.getAll().forEach(pokemonRepository.addListItem);
 //display Names and height of objects.
 //Added the note "Wow, that's BIG" to all objects with a height over 2.5
 
+//function printArrayDetails(list) {
+//    if (list.height >= 2.5) {
+//        document.write('<P>' + list.name + ('<br>(height:')+ list.height+(')') + ('<br>Wow, that\'s BIG!') + '<P>');
+//    } else {
+//    document.write('<P>' + list.name + ('<br>(height:')+ list.height+(')') + '<P>');
+//    }
+//  }
 
+//pokemonRepository.getAll().forEach(printArrayDetails); //displays pokemonList
