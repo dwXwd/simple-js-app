@@ -9,3 +9,29 @@ header {
 #pokedex {
   text-align: center;
 }
+
+.pokemon-list {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.button {
+  border: none;
+  display: inline-block;
+  font-family: inherit;
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 3px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+  transition: 0.5s opacity;
+  max-width: 200px;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #000;
+  background-color: #0f0;
+  opacity: 0.8;
+}
