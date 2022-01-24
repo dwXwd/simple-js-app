@@ -52,7 +52,13 @@ let pokemonRepository = (function() {
   ];
 
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    if(typeof pokemon === 'object'){
+    //validate Object.keys()
+      if(Object.keys === 'name')
+    pokemonList.push(newPokemon);
+      } else {
+    console.log ('Was not able to add.');
+    }
   }
 
   function getAll() {
