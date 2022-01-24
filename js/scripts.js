@@ -59,6 +59,11 @@ let pokemonRepository = (function() {
     return pokemonList;
   }
 
+  function searchBy(input) {
+    let filteredPokemon = pokemonList.filter(Object => Object.keys(pokemonList) === input);
+    return filteredPokemon
+  }
+
   function addListItem(pokemon){
     //create List of Pokemon-named Buttons
     let htmlList = document.querySelector('.pokemon-list');
