@@ -1,12 +1,16 @@
 //created array for distinct Pokemon-Objects.
 
 let pokemonRepository = (function() {
+  let pokemonList = [];
+  let apiUrl ='https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function add(pokemon) {
-    if(typeof pokemon === 'object'){
+    if (typeof pokemon === 'object' &&
+    'name' in pokemon &&
+    'detailsUrl' in pokemon
+    ) {
     //validate Object.keys()
-      if(Object.keys === 'name')
-    pokemonList.push(newPokemon);
+    pokemonList.push(pokemon);
       } else {
     console.log ('Was not able to add.');
     }
