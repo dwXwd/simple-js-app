@@ -48,7 +48,7 @@ let pokemonRepository = (function() {
   //creates function to show console.log
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-    showModal(pokemon.name, 'Height in inches: '+pokemon.height + '"', pokemon.imageURL);
+    showModal(pokemon);
     });
   }
 //  function pushEventListener(pokemon){
@@ -102,9 +102,7 @@ function loadDetails(item) {
   });
 }
 
-function showModal(title, text, thumbnail) {
-
-
+function showModal(pokemon) {
 //clear all existing modal content
 modalContainer.innerHTML = '';
 //target div as modal - variable
@@ -119,19 +117,20 @@ closeButtonElement.addEventListener('click', hideModal);
 
 //create Content of modal
 let titleElement = document.createElement('h1');
-titleElement.innerText = title;
+titleElement.innerText = pokemon.name;
 
 let contentElement = document.createElement('p');
-contentElement.innerText = text;
+contentElement.innerText ="Height in inches: "+pokemon.height+'"';
 
-let pokemonThumbnail = document.createElement('img');
-pokemonThumbnail.setAttribute("src", thumbnail);
+let pokemonSprite = document.createElement('img');
+pokemonSprite.setAttribute("src", pokemon.imageUrl);
+pokemonSprite.classList.add('pokemon-sprite')
 
 
 modal.appendChild(closeButtonElement);
 modal.appendChild(titleElement);
 modal.appendChild(contentElement);
-modal.appendChild(pokemonThumbnail)
+modal.appendChild(pokemonSprite);
 
 modalContainer.appendChild(modal);
 modalContainer.classList.add('is-visible');
@@ -145,8 +144,6 @@ function hideModal() {
     dialogPromiseReject = null;
   }
 }
-
-
 
 function showDialog(title, text) {
 showModal(title, text);
@@ -196,7 +193,6 @@ hideModal();
 }
 });
 
-
 document.querySelector('#show-modal').addEventListener('click', () => {
 showModal('Modal title', 'This is the modal content!');
 });
@@ -209,8 +205,6 @@ showDialog('Confirm Action', 'Are you sure you want to do this?').then(function(
 });
 });
 
-
-
   return {
     addListItem: addListItem,
     add: add,
@@ -221,18 +215,6 @@ showDialog('Confirm Action', 'Are you sure you want to do this?').then(function(
   };
 })();
 
-
-
-
-
-
-
-
-
-
-
-
-
 //Create forEach() - Loop for html-list
 
 pokemonRepository.loadList().then(function() {
@@ -241,12 +223,6 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon)
   });
 });
-
-
-
-
-
-
 
 
 (function () {
