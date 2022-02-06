@@ -1,28 +1,28 @@
-### simple-js-app
+simple-js-app
 
-### README
+README
 
 # **Pokedex-Application**
 
 
-#### This application was created to extract Pokemon information from an external API and turn it into a list of Pokemon-named buttons that can be clicked to read additional information about each individual Pokemon.
+This application was created to extract Pokemon information from an external API and turn it into a list of Pokemon-named buttons that can be clicked to read additional information about each individual Pokemon.
 
 ## Technologies used:
 
-#### 1. HTML
+1. HTML
 
-#### 2. CSS
+2. CSS
 
-#### 3. Vanilla Javascript
+3. Vanilla Javascript
 
 ## External libraries used:
 
-#### jQuery 3.5.1
+jQuery 3.5.1
 
-#### Bootstrap
+Bootstrap
 
 ### (addded for compatability)
 
-#### promise-polyfill
+promise-polyfill
 
-#### fetch-polyfill
+fetch-polyfill
