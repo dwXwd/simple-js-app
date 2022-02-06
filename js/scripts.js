@@ -46,7 +46,7 @@ let pokemonRepository = (function() {
    //creates distinct buttons for every Pokemon
    let htmlList = $('.pokemon-list');
    let listItem = $('<li class="group-list-item"></li>');
-   let button = $('<button type="button" class="button btn btn-primary" id="poke-button" data-toggle="modal" data-target="#modal-container">'+pokemon.name+'</button>');
+   let button = $('<button type="button" class="button btn btn-primary" id="poke-button" data-toggle="modal" data-target="#modal-container">'+capitalizeFirstLetter(pokemon.name)+'</button>');
 
   listItem.append(button)
   htmlList.append(listItem);
@@ -76,6 +76,10 @@ function showLoadingMessage() {
  function hideLoadingMessage() {
    loadingContainer.addClass('hidden');
  }
+
+ function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 //Create Loadlist function to turn Pokemon-Api JSON-Data into usable data.
  function loadList() {
     showLoadingMessage();
@@ -106,7 +110,7 @@ function showLoadingMessage() {
     hideLoadingMessage();
     item.imageUrl = details.sprites.front_default;
     item.height = details.height;
-    item.types = details.types;
+    item.types = capitalizeFirstLetter(details.types);
   }).catch(function (e){
     console.error(e);
     hideLoadingMessage();
@@ -121,7 +125,7 @@ function showModal(pokemon) {
   modalTitle.empty();
   modalBody.empty();
 
-   let titleElement = $("<h1>" + pokemon.name + "</h1>");
+   let titleElement = $("<h1>" + capitalizeFirstLetter(pokemon.name) + "</h1>");
    let contentElement = $("<p>Height in inches: "+pokemon.height+"'</p>");
    let pokemonSprite = $('<img class="modal-image" style="width:50%">');
    pokemonSprite.attr("src", pokemon.imageUrl);
