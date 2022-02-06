@@ -27,6 +27,7 @@ let pokemonRepository = (function() {
     );
     return filteredPokemon;
   }
+  function for search bar. Not yet implemented.
 */
 
 
@@ -68,9 +69,12 @@ let pokemonRepository = (function() {
     loadingContainer.addClass('hidden');
   }
 
+//function to start Strings with the first letter in caps
+
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
   //Create Loadlist function to turn Pokemon-Api JSON-Data into usable data.
   function loadList() {
     showLoadingMessage();
@@ -116,14 +120,12 @@ let pokemonRepository = (function() {
   function showModal(pokemon) {
     let modalBody = $('.modal-body');
     let modalTitle = $('.modal-title');
-//    let modalHeader = $('.modal-header');
+//    let modalHeader = $('.modal-header');     was not needed (?)
 
     modalTitle.empty();
     modalBody.empty();
 
-    let titleElement = $(
-      '<h1>' + capitalizeFirstLetter(pokemon.name) + '</h1>'
-    );
+    let titleElement = $('<h1>' + capitalizeFirstLetter(pokemon.name) + '</h1>');
     let contentElement = $('<p>Height in inches: ' + pokemon.height + '\'</p>');
     let pokemonSprite = $('<img class="modal-image" style="width:50%">');
     pokemonSprite.attr('src', pokemon.imageUrl);
@@ -131,9 +133,10 @@ let pokemonRepository = (function() {
     modalTitle.append(titleElement);
     modalBody.append(contentElement);
     modalBody.append(pokemonSprite);
+// function to show modal
     modalContainer.addClass('is-visible');
   }
-
+// function to hide modal
   function hideModal() {
     modalContainer.classList.remove('is-visible');
     if (dialogPromiseReject) {
