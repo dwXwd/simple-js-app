@@ -40,6 +40,7 @@ let pokemonRepository = (function() {
         capitalizeFirstLetter(pokemon.name) +
         '</button>'
     );
+    
 
     listItem.append(button);
     htmlList.append(listItem);
