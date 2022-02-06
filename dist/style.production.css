@@ -1,0 +1,146 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 3 version
+*/
+
+/*
+font-family: 'Ubuntu', sans-serif;
+*/
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #00f;
+}
+
+#main-body {
+  margin-top: 10px;
+}
+
+.starting-block {
+  height: 180px;
+  background-color: #00f;
+}
+
+#navbar {
+  background-color: #00f;
+  border-bottom: 2px solid #ff0;
+}
+
+#title {
+  color: #ff0;
+  font-size: 4em;
+  -webkit-text-stroke: 0.5px black;
+  font-family: 'Pokemon Solid', sans-serif;
+}
+
+#pokedex {
+  text-align: center;
+}
+
+.pokemon-list {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.container-fluid {
+  background-color: #00f;
+  border-color: undefined;
+}
+
+.navbar {
+  background-color: #00f;
+  border-color: undefined;
+}
+
+.navbar-light {
+  background-color: #00f;
+  border-color: undefined;
+}
+
+.bg-light {
+  background-color: #00f;
+  border-color: undefined;
+}
+
+.button {
+  display: inline-block;
+  font-size: 2em;
+  background-color: #00f;
+  color: #ff0;
+  text-decoration: none;
+  width: 300px;
+  height: 100px;
+  border: 5px solid #ff0;
+  max-width: 450px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-bottom: 4px;
+}
+
+.button:hover {
+  cursor: pointer;
+  color: #fff;
+  background-color: #f00;
+  border-color: #000;
+}
+
+.modal-content {
+  background: #f00;
+  width: 100%;
+  max-width: 700px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-family: 'Ubuntu', sans-serif;
+  border: 4px solid #000;
+}
+
+.modal-header {
+  border: none;
+}
+
+.modal-title {
+  -webkit-text-stroke: 0.5px black;
+  font-family: 'Pokemon Solid', sans-serif;
+}
+
+.modal-body {
+  background-color: #fff;
+  color: #000;
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+.modal-footer {
+  border: none;
+}
+
+.hidden {
+  display: none;
+}
+
+.loading-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.pokemon-sprite {
+  width: 75px;
+  height: auto;
+}
