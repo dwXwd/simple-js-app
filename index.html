@@ -6,20 +6,18 @@
     <title>Dennis-Dex</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
+    <link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=PT+Sans+Narrow&family=Ubuntu&display=swap" rel="stylesheet">
   </head>
 
-  <header>
+  <header id="header">
     <h1 id="title">Dennis-Dex</h1>
-    <p id = "email"></p>
-    <p id= "password"></p>
   </header>
 
   <body id="pokedex">
-<!---    <button id="show-modal">Show Modal</button>
-        <button id="show-dialog">Show dialog</button>--->
-    <div id ="modal-container"></div>
 
-    <ul class="pokemon-list"></ul>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -48,9 +46,9 @@
     </ul>
 
     <p>
+      <!---added prmose and fetch polyfilly for compatability --->
       <script src="js/promise-polyfill.js"></script>
       <script src="js/fetch.umd.js"></script>
-      <script id="pokedex__items" src="js/scripts.js"></script>
       <!--- added jQuery--->
       <script
       src="https://code.jquery.com/jquery-3.5.1.js"
