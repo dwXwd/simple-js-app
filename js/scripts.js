@@ -1,11 +1,10 @@
-
-
 let pokemonRepository = (function() {
   let pokemonList = [];
   let apiUrl ='https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  let modalContainer = document.querySelector('#modal-container');
+  let modalContainer = document.querySelector('#exampleModal');
   let dialogPromiseReject;
+  let loadingContainer = document.querySelector('#loading-container');
 
 
   function add(pokemon) {
@@ -26,20 +25,27 @@ let pokemonRepository = (function() {
 
   function searchBy(input) {
     let filteredPokemon = pokemonList.filter(Object => Object.keys(pokemonList) === input);
-    return filteredPokemon
+    return filteredPokemon;
   }
 
-  function addListItem(pokemon){
+  function addListItem(pokemon) {
     //creates distinct buttons for every Pokemon
-    let htmlList = document.querySelector('.pokemon-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement ('button');
-    button.innerText = pokemon.name;
-    button.classList.add('button');
-    listItem.appendChild(button);
-    htmlList.appendChild(listItem);
+    let htmlList = $('.pokemon-list');
+    let listItem = $('<li class="group-list-item"></li>');
+    let button = $('<button type="button" class="button btn btn-primary" id="poke-button" data-toggle="modal" data-target="#exampleModal">'+pokemon.name+'</button>');
+    //button.innerText = pokemon.name;
+    //button.classList.add('button
+    //');
+    //button.classList.add('btn');
+    //button.classList.add('btn-primary');
+
+  //  button.attr("data-toggle", "modal");
+  //  button.attr("data-target", "#exampleModal");
+    //listItem.append(button);
+    listItem.append(button)
+    htmlList.append(listItem);
     //activates Event on Button-click
-    button.addEventListener('click', function(event
+    button.on('click', function(event
     ){
       showDetails(pokemon);
     });
@@ -51,159 +57,119 @@ let pokemonRepository = (function() {
     showModal(pokemon);
     });
   }
-//  function pushEventListener(pokemon){
-//    document.querySelector.button.addEventListener('click', function(){
-//        showDetails(pokemon);
-//      });
-//  }
-  function showLoadingMessage(pokemon) {
-    let htmlList = document.querySelector('.pokemon-list');
-    let loadingMessage = document.createElement ('p');
-    loadingMessage.classList.add ('loading-message');
-    loadingMessage.classList.add ('visibility');
-    loadingMessage.innerText = "Looking for "+pokemon.name+"'s Data!";
-  }
+
+ function showLoadingMessage(pokemon) {
+   let loadingContainer = document.querySelector('#loading-container');
+   let loadingMessage = document.createElement('p');
+   loadingContainer.classList.remove('hidden');
+   loadingMessage.classList.add('loading-message');
+   loadingMessage.innerText = "Looking for Data!";
+   loadingContainer.appendChild(loadingMessage);
+
+
+   return {
+     loadingMessage: loadingMessage
+   };
+ }
 
   function hideLoadingMessage(pokemon) {
-    showLoadingMessage.loadingMessage.classlist.toggle ('visibility');
+    loadingContainer.classList.add('hidden');
   }
 
 //Create Loadlist function to turn Pokemon-Api JSON-Data into usable data.
-function loadList() {
-  return fetch(apiUrl).then(function (response) {
-    showLoadingMessage(response);
-    return response.json();
-    hideLoadingMessage(response);
-  }).then(function (json) {
-    json.results.forEach(function (item) {
-      let pokemon = {
-        name: item.name,
-        detailsUrl: item.url
-      };
-      add(pokemon);
+  function loadList() {
+     showLoadingMessage();
+     return fetch(apiUrl).then(function (response) {
+      hideLoadingMessage();
+      return response.json();
+      }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      hideLoadingMessage();
+      console.error(e);
     });
-  }).catch(function (e) {
-    hideLoadingMessage();
-    console.error(e);
-  })
-}
-
-function loadDetails(item) {
-  let url = item.detailsUrl;
-  return fetch(url).then(function (response) {
-   return response.json();
-  }).then(function (details) {
-    //now we add the details to the listItem
-    item.imageUrl = details.sprites.front_default
-    item.height = details.height;
-    item.types = details.types;
-  }).catch(function (e){
-    console.error(e);
-  });
-}
-
-function showModal(pokemon) {
-//clear all existing modal content
-modalContainer.innerHTML = '';
-//target div as modal - variable
-let  modal = document.createElement('div');
-modal.classList.add ('modal');
-
-//Add the new modal content
-let closeButtonElement = document.createElement('button')
-closeButtonElement.classList.add('modal-close');
-closeButtonElement.innerText = 'Close';
-closeButtonElement.addEventListener('click', hideModal);
-
-//create Content of modal
-let titleElement = document.createElement('h1');
-titleElement.innerText = pokemon.name;
-
-let contentElement = document.createElement('p');
-contentElement.innerText ="Height in inches: "+pokemon.height+'"';
-
-let pokemonSprite = document.createElement('img');
-pokemonSprite.setAttribute("src", pokemon.imageUrl);
-pokemonSprite.classList.add('pokemon-sprite')
-
-
-modal.appendChild(closeButtonElement);
-modal.appendChild(titleElement);
-modal.appendChild(contentElement);
-modal.appendChild(pokemonSprite);
-
-modalContainer.appendChild(modal);
-modalContainer.classList.add('is-visible');
-}
-
-function hideModal() {
-  modalContainer.classList.remove('is-visible');
-
-  if (dialogPromiseReject) {
-    dialogPromiseReject();
-    dialogPromiseReject = null;
   }
-}
 
-function showDialog(title, text) {
-showModal(title, text);
-let modal = modalContainer.querySelector('.modal');
-let dialogPromiseReject;
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    showLoadingMessage();
+    return fetch(url).then(function (response) {
+    return response.json();
+    }).then(function (details) {
+      //now we add the details to the listItem
+      hideLoadingMessage();
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e){
+      console.error(e);
+      hideLoadingMessage();
+    });
+  }
 
-// create confirm and cancel buttons
-let confirmButton = document.createElement('button');
-confirmButton.classList.add('modal-confirm');
-confirmButton.innerText = ('Confirm');
+  function showModal(pokemon) {
+  //clear all existing modal content
+    //modalContainer.innerHTML = '';
+    //target div as modal - variable
+    //let  modal = document.createElement('div');
+    //modal.classList.add ('modal');
 
-//
-let cancelButton = document.createElement('button');
-cancelButton.classList.add('modal-cancel');
-cancelButton.innerText = ('Cancel');
+    //implementing new bootstrap classes
+    let modalBody = $(".modal-body");
+    let modalTitle = $(".modal-title");
+    let modalHeader = $(".modal-header");
 
-modal.appendChild(confirmButton);
-modal.appendChild(cancelButton);
+    modalTitle.empty();
+    modalBody.empty();
 
-//focus the confirm-button so the user can continue by simply pressing "Enter"
-confirmButton.focus();
+    //Add the new modal content
+    //closeButtonElement.classList.add('modal-close');
+    //closeButtonElement.innerText = 'Close';
+    //closeButtonElement.addEventListener('click', hideModal);
 
-return new Promise((resolve, reject) => {
-  cancelButton.addEventListener('click', hideModal);
-  confirmButton.addEventListener('click', () => {
-    dialogPromiseReject = null; //Reset
-    hideModal();
-    resolve();
-});
+    //create content of modal
+    let titleElement = $("<h1>" + pokemon.name + "</h1>");
+    let contentElement = $("<p>Height in inches: "+pokemon.height+"'</p>");
+    let pokemonSprite = $('<img class="modal-image" style="width:50%">');
+    pokemonSprite.attr("src", pokemon.imageUrl);
 
-dialogPromiseReject = reject;
-});
-}
+    modalTitle.append(titleElement);
+    modalBody.append(contentElement);
+    modalBody.append(pokemonSprite);
 
+    //modalContainer.classList.add("is-visible");
+  }
 
-window.addEventListener ('keydown', (e) =>{
-//once a key is clicked and its assigned parameter "e" is equal to 'escape' and its classlist contains "is-visible, the hideMOdal function is called"
-if (e.key ==='Escape' && modalContainer.classList.contains('is-visible')) {
-hideModal();
-}
-});
+  //function hideModal() {
+  //  modalContainer.classList.remove("is-visible");
 
-modalContainer.addEventListener ('click', (e) => {
-let target = e.target;
-if (target === modalContainer) {
-hideModal();
-}
-});
+  //  if (dialogPromiseReject) {
+  //    dialogPromiseReject();
+  //    dialogPromiseReject = null;
+  //  }
+//  }
 
-document.querySelector('#show-modal').addEventListener('click', () => {
-showModal('Modal title', 'This is the modal content!');
-});
+/*
+  window.addEventListener('keydown', (e) => {
+    //once a key is clicked and its assigned parameter "e" is equal to 'escape' and its classlist contains "is-visible, the hideModal function is called"
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
 
-document.querySelector('#show-dialog').addEventListener('click', () => {
-showDialog('Confirm Action', 'Are you sure you want to do this?').then(function() {
-  alert('confirmed');
-}, () => {
-  alert('not confirmed');
-});
-});
+  modalContainer.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+*/
 
   return {
     addListItem: addListItem,
@@ -211,7 +177,8 @@ showDialog('Confirm Action', 'Are you sure you want to do this?').then(function(
     getAll: getAll,
     loadList: loadList,
     loadDetails: loadDetails,
-    showDetails: showDetails
+    showDetails: showDetails,
+    showModal: showModal
   };
 })();
 
@@ -224,73 +191,6 @@ pokemonRepository.loadList().then(function() {
   });
 });
 
-
-(function () {
-
-  let form = document.querySelector ('#register-form');
-  let emailInput = document.querySelector('#email');
-  let passwordInput = document.querySelector('#password');
-
-  function validateEmail(){
-  let value = emailInput.value;
-
-    if (!value) {
-      showErrorMessage (emailInput, 'Email is a required field.');
-      return false;
-    }
-
-    if (valueindexOf('@') === -1) {
-      showErrorMessage (emailInput, 'You must enter a valid email address.')
-    }
-
-    showErrorMessage(emailInput, null)
-    return true;
-  }
-
-
-  function validatePassword() {
-  let value= passwordInput.value;
-  if (!value) {
-    showErrorMessage(passwordInput, 'Password is a required field.')
-    return false;
-  }
-
-  if (value.length < 8) {
-    showErrorMessage(passwordInput, 'THe password needs to be at least 8 characters long.')
-    return false;
-  }
-
-  showErrorMessage(passwordInput, null);
-  return true;
-}
-
-  function showErrorMessage(input, message){
-  let container = input.parentElement; // the .input-wrapper
-
-  //Remove an existing error
-  let error = container.querySelector('error-message');
-  if (error) {
-    container.removeChild(error)
-  }
-  //add the Error if the message isn't empty
-  if (message) {
-    let error = document.createElement('div');
-    error.classList.add('error-message');
-    error.innerText = message;
-    container.appendChild(error);
-  }
-}
-
-  function validateForm() {
-  let isValidEmail = validateEmail();
-  let isValidPassword = validatePassword();
-  return isValidEmail && isValidPassword;
-}
-
-emailInput.addEventListener('input', validateEmail);
-passwordInput.addEventListener('input', validatePassword);
-
-})();
 
 
 
