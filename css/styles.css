@@ -2,7 +2,6 @@
 font-family: 'Ubuntu', sans-serif;
 */
 
-
 :root {
   --standard-h1: 'Pokemon Solid', sans-serif;
   --list-font: 'Ubuntu', sans-serif;
@@ -15,18 +14,28 @@ font-family: 'Ubuntu', sans-serif;
   box-sizing: border-box;
 }
 
-html {
+body {
   background-color: var(--poke-blue);
 }
 
-h1 {
-  font-family: var(--standard-h1);
+#main-body {
+  margin-top: 10px;
 }
 
-header {
-  text-align: center;
+.starting-block {
+  height: 180px;
+  background-color: var(--poke-blue);
+}
+
+#navbar {
+  background-color: var(--poke-blue);
+  border-bottom: 2px solid var(--poke-yellow);
+}
+
+#title {
   color: var(--poke-yellow);
-  font-size: 6em;
+  font-size: 4em;
+  font-family: var(--standard-h1);
 }
 
 #pokedex {
@@ -36,6 +45,14 @@ header {
 .pokemon-list {
   text-decoration: none;
   list-style-type: none;
+}
+
+.container-fluid,
+.navbar,
+.navbar-light,
+.bg-light {
+  background-color: var(--poke-blue);
+  border-color: var(--poke-vellow);
 }
 
 .button {
