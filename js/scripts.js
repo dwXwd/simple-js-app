@@ -174,7 +174,7 @@ let pokemonRepository = (function() {
 
 //Create forEach() - Loop for html-list
 pokemonRepository.loadList().then(function() {
-  //now the API Data is loaded!
+  // now the API Data is loaded!
   pokemonRepository.getAll().forEach(function(pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
