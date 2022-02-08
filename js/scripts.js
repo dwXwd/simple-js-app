@@ -3,7 +3,6 @@ let pokemonRepository = (function() {
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   let modalContainer = $('#modalContainer');
   let dialogPromiseReject;
-  let loadingContainer = $('#loading-container');
 
   function add(pokemon) {
     if (
@@ -40,7 +39,7 @@ let pokemonRepository = (function() {
         capitalizeFirstLetter(pokemon.name) +
         '</button>'
     );
-    
+
 
     listItem.append(button);
     htmlList.append(listItem);
@@ -56,17 +55,18 @@ let pokemonRepository = (function() {
     });
   }
   function showLoadingMessage() {
-    let loadingContainer = document.querySelector('#loading-container');
-    let loadingMessage = document.createElement('p');
-    loadingContainer.classList.remove('hidden');
-    loadingMessage.classList.add('loading-message');
-    loadingMessage.innerText = 'Looking for Data!';
-    loadingContainer.appendChild(loadingMessage);
+    let loadingContainer = $('#loading-container');
+    let loadingMessage = $('<div class="spinner-border loading-message text-danger" style="width: 4rem, height: 4rem" role="status"><span class="sr-only">Loading...</span></div>');
+    loadingContainer.empty();
+    loadingContainer.removeClass('hidden');
+    loadingContainer.append(loadingMessage);
     return {
       loadingMessage: loadingMessage
     };
   }
+
   function hideLoadingMessage() {
+    let loadingContainer = $('#loading-container');
     loadingContainer.addClass('hidden');
   }
 
@@ -111,7 +111,7 @@ let pokemonRepository = (function() {
         hideLoadingMessage();
         item.imageUrl = details.sprites.front_default;
         item.height = details.height;
-        item.types = capitalizeFirstLetter(details.types);
+        item.types = (details.types);
       })
       .catch(function(e) {
         console.error(e);

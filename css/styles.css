@@ -110,14 +110,34 @@ body {
   border: none;
 }
 
-.hidden {
-  display: none;
+.loading-message {
+  /* border-color: var(--poke-yellow); */
+  background: hsla(360, 100%, 100%, 0);
+  display: flex;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
 }
 
-.loading-message {
+#loading-container {
   display: flex;
-  text-decoration: none;
-  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background: hsla(360, 100%, 100%, 0);
+  border: none;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .pokemon-sprite {

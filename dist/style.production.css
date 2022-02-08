@@ -128,16 +128,44 @@ body {
   border: none;
 }
 
-.hidden {
-  display: none;
-}
-
 .loading-message {
+  /* border-color: var(--poke-yellow); */
+  background: hsla(360, 100%, 100%, 0);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  text-decoration: none;
-  list-style-type: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 5rem;
+  height: 5rem;
+}
+
+#loading-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background: hsla(360, 100%, 100%, 0);
+  border: none;
+  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .pokemon-sprite {
